@@ -13,6 +13,7 @@
 
 // 地区
 #set text(lang: "zh", region: "cn")
+#set text(size: 12pt)
 
 // 引用
 #set quote(block: true)
@@ -52,8 +53,8 @@
 #grid(
   columns: (1fr),
   align(center)[
-    #text(15pt)[译者：秦宇轩 \
-学号：10230325 \
+    #text(15pt)[译者：*秦宇轩* \
+学号：*10230325* \
 班级：数学与应用数学 2 班 \
 最后编译于 #datetime.today().display() \
   ]],
@@ -71,9 +72,16 @@
 - 选择材料：翻译材料 2，即《*模的基本概念和同态同构定理*》；
 - 排版引擎：Typst `0.14.0`；
 
+本译文基本采用直译的方式，最大程度地保留原文件面貌，譬如诸命题、定理的编号均与原文件同。
+
+我承诺本译文均由本人独立完成。
+
+本文件源代码俱开源于 `https://github.com/YuxuanQin/jilin-univ-algebra-II`
+
+
 #line(length: 100%)
 
-/ 命题 2.7: 令 $T: bold("Mod") -> bold("Ab")$ 是加性函子，协变性任意。则
+/ 命题 2.7: 令 $T: attach(bold("Mod"), bl: R,) -> bold("Ab")$ 是加性函子，协变性任意。则
 
 + 若 $0: A -> B$ 是零映射，即对于任意 $a in A$，作用为 $a |-> 0$ 的映射，则 $T(0) = 0$.
 + $T({0}) = {0}$.
@@ -186,10 +194,32 @@ $ker f$ 是 $M$ 的子模、$im f$ 是 $N$ 的子模这两点都是常规验证�
   
   进一步有：$T subset.eq S subset.eq S'$ 当且仅当在 $M slash T$ 中有 $S slash T subset.eq S' slash T$.
 #proof[
-
-
+因为模都是加性交换群，所以子模都是子群，因此群的对应定理告诉我们 $phi$ 是保含入的单射：在 $M$ 中有 $S subset.eq S'$ 当且仅当在 $M slash T$ 中有 $S slash T subset.eq S' slash T$. 进一步，$phi$ 还是满的：若 $S^* subset.eq M slash T$，则存在唯一一个满足 $S^* = S slash T$ 的子模 $S supset.eq T$. 本证明剩下的部分就是群版本证明的重复，只需要验证子模的像与原像都还是子模就行。
 ]
 
+能应用对应定理的时候，我们通常不显式指出，而是悄悄地直接用了：对 $M slash T$ 的子模 $S^*$ 而言，存在唯一一个中间子模 $S$ 满足 $S^* = S slash T$.
 
+下面是一个环论版本的对应定理。
 
+/ 定理 2.15（环的对应定理）: 若 $I$ 是环 $R$ 的双边理想，则 $phi: J |-> J slash I$ 是双射：
+  $ phi: {"中间左理想 " I subset.eq J subset.eq R} -> {R slash I " 的左理想"}. $
+  进一步，在 $R$ 中有 $I subset.eq J subset.eq J'$ 当且仅当在 $R slash I$ 中有 $J slash I subset.eq J' slash I$.
+#proof[
+读者可自行补充一个类似于定理 2.14 的证明。
+]
 
+/ 命题 2.16: 左 $R$-模 $M$ 是循环模当且仅当存在左理想 $I$，使得 $M tilde.equiv R slash I$.
+#proof[
+若 $M$ 是循环模，则存在 $m in M$ 使得 $M = chevron.l m chevron.r$. 定义 $f: R -> M$ 为 $f(r) = r m$. 则因 $M$ 循环，有 $f$ 满，且它的核是 $R$ 的子模，即 $ker f$ 等于某个左理想 $I$. 则由第一同构定理有 $R slash I tilde.equiv M$.
+
+反过来，$R slash I$ 确是循环的，它有生成元 $m = 1 + I$.
+]
+
+/ 定义: 若左 $R$-模 $M != {0}$ 没有非零真子模，即 ${0}$ 和 $M$ 是 $M$ 仅有的子模，则称 $M$ 为*单模*（或*不可约模*）。
+
+/ 推论 2.17: 左 $R$-模 $M$ 单当且仅当存在极大左理想 $I$ 使得 $M tilde.equiv R slash I$.
+#proof[
+由对应定理立得。
+]
+
+举个例子：交换群 $G$ 单，当且仅当存在素数 $p$ 使得 $G$ 是 $p$ 阶循环群。极大左理想的存在性保证了单模的存在性。
