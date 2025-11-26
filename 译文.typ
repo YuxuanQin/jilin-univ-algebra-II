@@ -11,10 +11,6 @@
 // #import cosmos.clouds: *
 #show: show-theorion
 
-// 地区
-#set text(lang: "zh", region: "cn")
-#set text(size: 12pt)
-
 // 引用
 #set quote(block: true)
 
@@ -23,14 +19,24 @@
   inset: 9pt
 )  // distance between text and the edge
 
-// 字体
+
+// 地区
+#set text(lang: "zh", region: "cn")
+#set text(size: 12pt)
+
+// 正文字体
 #set text(font: (
   (name: "libertinus serif"),
   "Noto Serif CJK SC"
 ))
 
+// 数学字体
+#show math.equation: set text(font: (
+  (name: "New Computer Modern Math", covers: "latin-in-cjk"), // 西文
+  "Noto Serif CJK SC", // 中文
+))
+
 // Paragraph indent
-#set par(first-line-indent: (amount: 2em, all: true))
 
 // Enable justification
 #set par(justify: true)
@@ -52,11 +58,14 @@
 // Author and date
 #grid(
   columns: (1fr),
-  align(center)[
-    #text(15pt)[译者：*秦宇轩* \
+  align(left)[
+    #text(15pt)[
+译者：*秦宇轩* \
 学号：*10230325* \
-班级：数学与应用数学 2 班 \
-最后编译于 #datetime.today().display() \
+班级：*数学与应用数学 2 班* \
+选择材料：*《模的基本概念和同态同构定理》*（即翻译材料 2）\
+翻译原则：直译，最大程度地保留原文件面貌，诸编号均与原文件同。
+
   ]],
 )
 
@@ -65,22 +74,11 @@
 ///////////////////////////////////////////////////////////////////
 ////////////////////////  Table of Contents  //////////////////////
 ///////////////////////////////////////////////////////////////////
-
-= 翻译说明
-本文件为吉林大学数学与应用数学专业课 “抽象代数 II” 的翻译作业，以下是本文件的基本信息：
-
-- 选择材料：翻译材料 2，即《*模的基本概念和同态同构定理*》；
-- 排版引擎：Typst `0.14.0`；
-
-本译文基本采用直译的方式，最大程度地保留原文件面貌，譬如诸命题、定理的编号均与原文件同。
-
-我承诺本译文均由本人独立完成。
-
-本文件源代码俱开源于 `https://github.com/YuxuanQin/jilin-univ-algebra-II`
-
-
+\
 #line(length: 100%)
+\
 
+#set par(first-line-indent: (amount: 2em, all: true))
 / 命题 2.7: 令 $T: attach(bold("Mod"), bl: R,) -> bold("Ab")$ 是加性函子，协变性任意。则
 
 + 若 $0: A -> B$ 是零映射，即对于任意 $a in A$，作用为 $a |-> 0$ 的映射，则 $T(0) = 0$.
@@ -223,3 +221,35 @@ $ker f$ 是 $M$ 的子模、$im f$ 是 $N$ 的子模这两点都是常规验证�
 ]
 
 举个例子：交换群 $G$ 单，当且仅当存在素数 $p$ 使得 $G$ 是 $p$ 阶循环群。极大左理想的存在性保证了单模的存在性。
+
+\
+\
+#align(right)[译完。]
+#line(length: 100%)
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+= 翻译说明
+本文件为吉林大学数学与应用数学专业课 “抽象代数 II” 的翻译作业，以下是本文件的基本信息：
+
+- 排版引擎：Typst `0.14.0`；
+- 本文件源代码俱开源于 `https://github.com/YuxuanQin/jilin-univ-algebra-II`
+
+我承诺本译文均由本人独立完成。
+
+
